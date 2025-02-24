@@ -1,3 +1,4 @@
+#A script to pull down ISOs to your content library, change to your Content Library name below, chmod it and run the script. You will need govc and you will need to export connection details for your vSphere environment
 #!/bin/bash
 
 # Set your vSphere Content Library name
