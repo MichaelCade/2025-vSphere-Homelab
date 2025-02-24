@@ -41,15 +41,19 @@ for URL in "${ISO_URLS[@]}"; do
         FILENAME="${FILENAME:0:$MAX_LENGTH}"
     fi
 
-    echo "Importing $FILENAME into $CONTENT_LIBRARY..."
-
-    govc library.import -n "$FILENAME" "$CONTENT_LIBRARY" "$URL"
+    CHECK_EXISTS=$(govc library.ls $CONTENT_LIBRARY/$FILENAME)
+    if [ -z $CHECK_EXISTS ]; then
+        echo "Importing $FILENAME into $CONTENT_LIBRARY..."
+        govc library.import -n "$FILENAME" "$CONTENT_LIBRARY" "$URL" 
+    else
+        echo "$FILENAME already exists in $CONTENT_LIBRARY Content Library - skipping"
+    fi
+done
 
     if [ $? -eq 0 ]; then
         echo "Successfully imported: $FILENAME"
     else
         echo "Failed to import: $FILENAME"
     fi
-done
 
 echo "All ISOs have been processed!"
