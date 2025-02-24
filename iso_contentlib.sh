@@ -50,5 +50,4 @@ for URL in "${ISO_URLS[@]}"; do
         echo "$FILENAME already exists in $CONTENT_LIBRARY Content Library - skipping"
     fi
 done
-
 echo "All ISOs have been processed!"
